@@ -1,12 +1,9 @@
-// State of the app
-const todos = ['Walk the dog', 'Water the plants', 'Sand the chairs']
-
-// HTML element references
 const addTodoInput = document.getElementById('todo-input')
 const addTodoButton = document.getElementById('add-todo-btn')
 const todosList = document.getElementById('todos-list')
 
-// Initialize the view
+const todos = ['Walk the dog', 'Water the plants', 'Sand the chairs']
+
 for (const todo of todos) {
   todosList.append(renderTodoInReadMode(todo))
 }
@@ -31,7 +28,7 @@ function renderTodoInReadMode(todo) {
 
   const span = document.createElement('span')
   span.textContent = todo
-  span.addEventListener('dblclick', () => {
+  span.addEventListener('click', () => {
     const idx = todos.indexOf(todo)
 
     todosList.replaceChild(
@@ -45,7 +42,8 @@ function renderTodoInReadMode(todo) {
   button.textContent = 'Done'
   button.addEventListener('click', () => {
     const idx = todos.indexOf(todo)
-    removeTodo(idx)
+    // removeTodo(idx)
+    todosList.childNodes[idx].style.textDecoration = 'line-through'
   })
   li.append(button)
 
@@ -81,7 +79,6 @@ function renderTodoInEditMode(todo) {
 
   return li
 }
-
 function addTodo() {
   const description = addTodoInput.value
 
